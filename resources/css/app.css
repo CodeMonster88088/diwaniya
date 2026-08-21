@@ -1,0 +1,1489 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* =========================================================
+   DIWANIYA PUBLIC WEBSITE
+   ========================================================= */
+
+:root {
+    --diwaniya-black: #0b0d0c;
+    --diwaniya-dark: #11120f;
+    --diwaniya-brown: #211a12;
+
+    --diwaniya-gold: #a88445;
+    --diwaniya-gold-light: #c6a467;
+    --diwaniya-gold-dark: #735c31;
+
+    --diwaniya-cream: #dfd1b9;
+    --diwaniya-muted: #aa9a82;
+
+    --diwaniya-border: rgba(168, 132, 69, 0.35);
+}
+
+
+/* ================================
+   GLOBAL
+================================ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+#photos,
+#poems {
+    scroll-margin-top: 130px;
+}
+
+.public-site {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--diwaniya-black);
+    color: var(--diwaniya-cream);
+    direction: rtl;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.public-container {
+    width: min(1180px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.public-header {
+    height: 110px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(180deg,
+            #0c0e0d 0%,
+            #0a0c0b 100%);
+
+    border-bottom: 1px solid var(--diwaniya-border);
+}
+
+.navbar {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* Logo */
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo img {
+    display: block;
+    width: 310px;
+    height: auto;
+}
+
+
+/* Navigation */
+
+.public-navigation {
+    height: 100%;
+
+    display: flex;
+    align-items: stretch;
+
+    gap: 55px;
+}
+
+.public-navigation a {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    color: #ae946c;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.public-navigation a:hover {
+    color: var(--diwaniya-gold-light);
+}
+
+.public-navigation a.active {
+    color: #d0b27d;
+}
+
+.public-navigation a.active::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    left: 0;
+    bottom: 15px;
+
+    height: 2px;
+
+    background: var(--diwaniya-gold);
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.public-hero {
+    position: relative;
+
+    min-height: 610px;
+
+    overflow: hidden;
+
+    border-bottom: 1px solid var(--diwaniya-border);
+
+    background:
+        radial-gradient(circle at 25% 45%,
+            rgba(118, 82, 43, 0.24),
+            transparent 38%),
+        radial-gradient(circle at 80% 35%,
+            rgba(88, 58, 27, 0.18),
+            transparent 30%),
+        linear-gradient(90deg,
+            #1c160f 0%,
+            #15120d 45%,
+            #0f100e 100%);
+}
+
+.public-hero::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(90deg,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.18));
+}
+
+
+/*
+    LTR only controls which visual column
+    appears left/right.
+
+    Arabic content itself remains RTL.
+*/
+
+.hero-grid {
+    position: relative;
+    z-index: 1;
+
+    min-height: 610px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(420px, 1fr) minmax(430px, 1fr);
+
+    align-items: stretch;
+
+    direction: ltr;
+}
+
+
+/* Portrait */
+
+.hero-portrait {
+    position: relative;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.hero-portrait::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(90deg,
+            transparent 65%,
+            rgba(19, 16, 11, 0.92) 100%);
+}
+
+.hero-portrait img {
+    position: relative;
+    z-index: 0;
+
+    width: auto;
+    height: 590px;
+
+    max-width: none;
+
+    object-fit: contain;
+
+    object-position: bottom center;
+
+    filter:
+        sepia(0.08) brightness(0.82) contrast(1.04);
+}
+
+
+/* Hero content */
+
+.hero-content {
+    position: relative;
+
+    direction: rtl;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    padding:
+        70px 40px 70px 20px;
+
+    text-align: center;
+}
+
+.hero-calligraphy {
+    width: min(500px, 90%);
+
+    margin-bottom: 38px;
+
+    filter:
+        sepia(0.15) brightness(0.75) saturate(0.85);
+}
+
+.hero-description {
+    margin: 0;
+
+    color: #d8c9b3;
+
+    font-size: 23px;
+    line-height: 1.9;
+
+    font-weight: 400;
+}
+
+.hero-actions {
+    margin-top: 36px;
+}
+
+.archive-button {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 14px;
+
+    padding:
+        15px 30px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(180deg,
+            #a68445,
+            #84682f);
+
+    color: #f3eadb;
+
+    font-size: 20px;
+
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.08),
+        0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.archive-icon {
+    font-size: 22px;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+.public-footer {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    background: #0b0c0b;
+
+    border-top: 1px solid var(--diwaniya-border);
+}
+
+.public-footer img {
+    width: 300px;
+    margin-inline: auto;
+    opacity: 0.7;
+}
+
+.public-footer p {
+    margin-top: 12px;
+
+    color: #9f8968;
+
+    font-size: 15px;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+    .public-header {
+        height: auto;
+
+        padding:
+            18px 0;
+    }
+
+    .navbar {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+    .navbar-logo img {
+        width: 260px;
+    }
+
+    .public-navigation {
+        gap: 25px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .public-navigation a.active::after {
+        bottom: -7px;
+    }
+
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        grid-row: 1;
+
+        padding:
+            60px 20px 25px;
+    }
+
+    .hero-portrait {
+        grid-row: 2;
+    }
+
+    .hero-portrait img {
+        height: 520px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .public-container {
+        width: min(100% - 28px, 1180px);
+    }
+
+    .public-navigation {
+        gap:
+            15px 22px;
+    }
+
+    .public-navigation a {
+        font-size: 14px;
+    }
+
+    .hero-description {
+        font-size: 18px;
+    }
+
+    .hero-calligraphy {
+        width: 95%;
+    }
+
+    .hero-portrait img {
+        height: 420px;
+    }
+}
+
+/* =========================================================
+   PUBLIC HERO
+   ========================================================= */
+
+.public-hero {
+    position: relative;
+    min-height: 610px;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 23% 45%,
+            rgba(128, 90, 47, 0.24),
+            transparent 38%),
+        radial-gradient(circle at 72% 30%,
+            rgba(87, 60, 32, 0.16),
+            transparent 35%),
+        linear-gradient(90deg,
+            #201911 0%,
+            #17130e 45%,
+            #0d0f0e 100%);
+
+    border-bottom: 1px solid rgba(168, 132, 69, 0.35);
+}
+
+
+.hero-grid {
+    min-height: 610px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: stretch;
+
+    /*
+        This makes portrait visually appear on the left
+        while the Arabic content remains RTL.
+    */
+    direction: ltr;
+}
+
+
+/* =========================
+   Portrait
+   ========================= */
+
+.hero-portrait {
+    position: relative;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    min-width: 0;
+}
+
+.hero-portrait img {
+    display: block;
+
+    height: 600px;
+    width: auto;
+
+    max-width: none;
+
+    object-fit: contain;
+    object-position: bottom center;
+
+    filter:
+        brightness(0.82) sepia(0.08) contrast(1.05);
+}
+
+
+/*
+    Dark fade between the portrait and text,
+    similar to your reference image.
+*/
+.hero-portrait::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(90deg,
+            transparent 55%,
+            rgba(18, 15, 11, 0.85) 100%);
+}
+
+
+/* =========================
+   Content
+   ========================= */
+
+.hero-content {
+    direction: rtl;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 60px 30px;
+}
+
+
+.hero-calligraphy {
+    display: block;
+
+    width: min(520px, 95%);
+    height: auto;
+
+    margin-bottom: 35px;
+
+    /*
+        Your supplied logo is brighter than the reference,
+        so this tones it down slightly.
+    */
+    filter:
+        brightness(0.72) saturate(0.8) sepia(0.1);
+}
+
+
+.hero-description {
+    margin: 0;
+
+    color: #d8cab5;
+
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 1.9;
+}
+
+
+.hero-actions {
+    margin-top: 34px;
+}
+
+
+.archive-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 13px;
+
+    min-width: 250px;
+
+    padding: 14px 28px;
+
+    background:
+        linear-gradient(180deg,
+            #a38346 0%,
+            #82662f 100%);
+
+    color: #f2e6d3;
+
+    border: 1px solid rgba(211, 180, 118, 0.2);
+
+    border-radius: 5px;
+
+    font-size: 20px;
+
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.08),
+        0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+.archive-icon {
+    font-size: 21px;
+}
+
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        grid-row: 1;
+
+        padding-top: 60px;
+        padding-bottom: 20px;
+    }
+
+    .hero-portrait {
+        grid-row: 2;
+    }
+
+    .hero-portrait img {
+        height: 520px;
+    }
+
+    .hero-portrait::after {
+        background:
+            linear-gradient(180deg,
+                rgba(18, 15, 11, 0.35),
+                transparent 25%);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .hero-calligraphy {
+        width: 100%;
+    }
+
+    .hero-description {
+        font-size: 18px;
+    }
+
+    .hero-portrait img {
+        height: 420px;
+    }
+
+    .archive-button {
+        min-width: 220px;
+        font-size: 17px;
+    }
+}
+
+/* =========================================================
+   ARCHIVE NOTICE
+   ========================================================= */
+
+.archive-notice-section {
+    padding: 28px 0;
+    background: #0b0d0c;
+}
+
+
+.archive-notice {
+    min-height: 105px;
+
+    display: grid;
+    grid-template-columns: 105px 1fr;
+
+    border: 1px solid rgba(168, 132, 69, 0.55);
+    border-radius: 10px;
+
+    background:
+        linear-gradient(90deg,
+            #0c0e0d 0%,
+            #10110e 100%);
+
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 0 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Icon area */
+
+.archive-notice-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #bc9450;
+
+    border-left: 1px solid rgba(168, 132, 69, 0.25);
+
+    background:
+        rgba(168, 132, 69, 0.035);
+}
+
+.archive-notice-icon svg {
+    width: 38px;
+    height: 38px;
+}
+
+
+/* Text */
+
+.archive-notice-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px 40px;
+
+    text-align: center;
+}
+
+.archive-notice-text p {
+    margin: 0;
+
+    max-width: 850px;
+
+    color: #b99b71;
+
+    font-size: 17px;
+    font-weight: 500;
+
+    line-height: 2;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .archive-notice {
+        grid-template-columns: 70px 1fr;
+    }
+
+    .archive-notice-text {
+        padding: 16px 20px;
+    }
+
+    .archive-notice-text p {
+        font-size: 14px;
+        line-height: 1.9;
+    }
+
+    .archive-notice-icon svg {
+        width: 30px;
+        height: 30px;
+    }
+
+}
+
+/* =========================================================
+   PUBLIC INNER PAGE HEADER
+   ========================================================= */
+
+.public-page-header {
+    padding: 70px 0 55px;
+
+    background:
+        radial-gradient(circle at 50% 0%,
+            rgba(139, 101, 51, 0.15),
+            transparent 45%),
+        #0d0f0e;
+
+    border-bottom: 1px solid rgba(168, 132, 69, 0.25);
+}
+
+.page-heading {
+    text-align: center;
+}
+
+.page-heading h1 {
+    margin: 0;
+
+    color: #c5a466;
+
+    font-size: 38px;
+    font-weight: 700;
+}
+
+.page-heading p {
+    max-width: 650px;
+
+    margin: 18px auto 0;
+
+    color: #aa9a82;
+
+    font-size: 17px;
+    line-height: 2;
+}
+
+
+/* =========================================================
+   PUBLIC AUDIO ARCHIVE
+   ========================================================= */
+
+.audio-archive-section {
+    min-height: 500px;
+
+    padding: 55px 0 80px;
+
+    background: #0b0d0c;
+}
+
+.public-audio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.public-audio-card {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) minmax(320px, 420px);
+
+    gap: 35px;
+
+    align-items: center;
+
+    padding: 25px 30px;
+
+    background:
+        linear-gradient(135deg,
+            #15150f,
+            #10110e);
+
+    border: 1px solid rgba(168, 132, 69, 0.35);
+
+    border-radius: 9px;
+}
+
+.public-audio-info h2 {
+    margin: 0;
+
+    color: #d1b276;
+
+    font-size: 21px;
+}
+
+.audio-meta {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px 22px;
+
+    margin-top: 10px;
+
+    color: #8f806a;
+
+    font-size: 14px;
+}
+
+.public-audio-info p {
+    margin: 14px 0 0;
+
+    color: #aaa08e;
+
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.public-audio-player audio {
+    display: block;
+
+    width: 100%;
+    height: 44px;
+}
+
+.public-empty-state {
+    padding: 80px 20px;
+
+    text-align: center;
+
+    border: 1px solid rgba(168, 132, 69, 0.3);
+    border-radius: 10px;
+
+    background: #10110e;
+}
+
+.public-empty-state h2 {
+    margin: 0;
+
+    color: #c3a369;
+}
+
+.public-empty-state p {
+    margin-top: 12px;
+
+    color: #8f836f;
+}
+
+.public-pagination {
+    margin-top: 35px;
+}
+
+
+@media (max-width: 800px) {
+
+    .public-audio-card {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+}
+
+/* =========================================================
+   ARCHIVE - PHOTOS & POEMS
+   ========================================================= */
+
+.archive-photos-section {
+    padding: 60px 0 80px;
+    background: #0b0d0c;
+}
+
+.archive-poems-section {
+    padding: 70px 0 90px;
+
+    background:
+        linear-gradient(rgba(215, 194, 159, 0.95),
+            rgba(198, 174, 136, 0.95));
+}
+
+
+/* Section headings */
+
+.archive-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    margin-bottom: 35px;
+}
+
+.archive-section-heading h2 {
+    margin: 0;
+
+    color: #b99759;
+
+    font-size: 30px;
+    white-space: nowrap;
+}
+
+.archive-section-heading span {
+    display: block;
+    height: 1px;
+    width: 100%;
+
+    background:
+        linear-gradient(90deg,
+            rgba(168, 132, 69, 0),
+            rgba(168, 132, 69, 0.65));
+}
+
+
+/* =========================
+   Photos
+   ========================= */
+
+.public-photo-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+.public-photo-card {
+    overflow: hidden;
+
+    background: #13140f;
+
+    border: 1px solid rgba(168, 132, 69, 0.35);
+
+    border-radius: 8px;
+}
+
+.public-photo-image {
+    height: 240px;
+
+    overflow: hidden;
+
+    background: #080908;
+}
+
+.public-photo-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.35s ease;
+}
+
+.public-photo-card:hover .public-photo-image img {
+    transform: scale(1.04);
+}
+
+.public-photo-content {
+    padding: 18px;
+}
+
+.public-photo-content h3 {
+    margin: 0;
+
+    color: #cfaf73;
+
+    font-size: 18px;
+}
+
+.public-photo-date {
+    margin: 8px 0 0;
+
+    color: #897a64;
+
+    font-size: 13px;
+}
+
+.public-photo-description {
+    margin: 12px 0 0;
+
+    color: #a99e8c;
+
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* =========================
+   Poems
+   ========================= */
+
+.archive-poems-section .archive-section-heading h2 {
+    color: #54442d;
+}
+
+.archive-poems-section .archive-section-heading span {
+    background:
+        linear-gradient(90deg,
+            rgba(90, 68, 38, 0),
+            rgba(90, 68, 38, 0.55));
+}
+
+.public-poem-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+.public-poem-card {
+    position: relative;
+
+    padding: 32px;
+
+    background:
+        rgba(237, 221, 194, 0.4);
+
+    border: 1px solid rgba(93, 70, 39, 0.35);
+
+    border-radius: 5px;
+
+    color: #493a27;
+}
+
+.poem-decoration {
+    color: #8c6b3d;
+
+    font-size: 27px;
+
+    margin-bottom: 12px;
+}
+
+.public-poem-card h3 {
+    margin: 0;
+
+    color: #4c3922;
+
+    font-size: 22px;
+}
+
+.public-poet {
+    margin: 8px 0 0;
+
+    color: #745d3e;
+
+    font-size: 14px;
+}
+
+.public-poem-preview {
+    margin: 20px 0 0;
+
+    color: #56472f;
+
+    line-height: 2;
+
+    white-space: pre-line;
+}
+
+.public-poem-date {
+    margin: 18px 0 0;
+
+    color: #826c4d;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 1000px) {
+
+    .public-photo-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .public-photo-grid,
+    .public-poem-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .public-photo-image {
+        height: 280px;
+    }
+
+}
+
+/* =========================================================
+   FULL POEM PAGE
+   ========================================================= */
+
+.poem-show-section {
+    min-height: 700px;
+
+    padding: 70px 20px 110px;
+
+    background:
+        linear-gradient(rgba(238, 231, 216, 0.98),
+            rgba(225, 213, 191, 0.98));
+}
+
+
+/* Main page width */
+
+.poem-show-section .public-container {
+    width: min(1400px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+
+/* Main poem card */
+
+.full-poem {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    padding: 55px 70px 70px;
+
+    box-sizing: border-box;
+
+    background: rgba(250, 246, 238, 0.72);
+
+    border: 1px solid rgba(91, 68, 38, 0.22);
+
+    box-shadow:
+        0 18px 50px rgba(55, 40, 20, 0.09);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.full-poem-header {
+    text-align: center;
+
+    padding-bottom: 30px;
+    margin-bottom: 55px;
+
+    border-bottom: 1px solid rgba(91, 68, 38, 0.22);
+}
+
+
+.full-poem-decoration {
+    margin-bottom: 12px;
+
+    color: #806139;
+
+    font-size: 34px;
+}
+
+
+.full-poem-header h1 {
+    margin: 0;
+
+    color: #382a19;
+
+    font-size: 38px;
+    font-weight: 700;
+}
+
+
+.full-poem-poet {
+    margin: 14px 0 0;
+
+    color: #695135;
+
+    font-size: 19px;
+}
+
+
+.full-poem-date {
+    margin: 8px 0 0;
+
+    color: #8b7456;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.full-poem-description {
+    max-width: 900px;
+
+    margin: 0 auto 50px;
+
+    padding: 20px 25px;
+
+    color: #655237;
+
+    border-right: 3px solid #8c6b3d;
+
+    font-size: 17px;
+    line-height: 2;
+}
+
+
+/* =========================================================
+   POEM
+   ========================================================= */
+
+.full-poem-content {
+    width: 100%;
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    direction: rtl;
+
+    color: #17130e;
+
+    font-family:
+        "Traditional Arabic",
+        "Noto Naskh Arabic",
+        "Amiri",
+        serif;
+
+    font-size: 29px;
+    font-weight: 500;
+}
+
+
+/*
+   Each verse is two physical columns.
+
+   Database:
+   RIGHT HALF          LEFT HALF
+
+   Screen:
+   [ LEFT HALF ]     [ RIGHT HALF ]
+*/
+
+.poem-line {
+    display: grid;
+
+    grid-template-columns: max-content max-content;
+
+    justify-content: center;
+
+    column-gap: 75px;
+
+    align-items: center;
+
+    min-height: 54px;
+
+    direction: ltr;
+}
+
+
+/* Text before the large space */
+
+.poem-right-half {
+    grid-column: 2;
+
+    direction: rtl;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    line-height: 1.9;
+}
+
+
+/* Text after the large space */
+
+.poem-left-half {
+    grid-column: 1;
+
+    direction: rtl;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    line-height: 1.9;
+}
+
+
+/* Empty line between stanzas */
+
+.poem-stanza-gap {
+    height: 52px;
+}
+
+
+/* =========================================================
+   BACK LINK
+   ========================================================= */
+
+.full-poem-back {
+    margin-top: 65px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid rgba(91, 68, 38, 0.25);
+
+    text-align: center;
+}
+
+
+.full-poem-back a,
+.read-poem-link {
+    color: #795a31;
+
+    text-decoration: none;
+
+    font-weight: 700;
+}
+
+
+.full-poem-back a:hover,
+.read-poem-link:hover {
+    text-decoration: underline;
+}
+
+
+.read-poem-link {
+    display: inline-block;
+
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .full-poem {
+        padding: 45px 35px 60px;
+    }
+
+    .full-poem-content {
+        font-size: 24px;
+    }
+
+    .poem-line {
+        column-gap: 35px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .poem-show-section {
+        padding: 40px 10px 70px;
+    }
+
+    .poem-show-section .public-container {
+        width: 100%;
+    }
+
+    .full-poem {
+        padding: 35px 20px 50px;
+    }
+
+    .full-poem-header {
+        margin-bottom: 40px;
+    }
+
+    .full-poem-header h1 {
+        font-size: 30px;
+    }
+
+    .full-poem-content {
+        font-size: 21px;
+    }
+
+    /*
+       On phones, put the two halves underneath
+       each other because there isn't enough width.
+    */
+
+    .poem-line {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 3px;
+
+        margin-bottom: 18px;
+    }
+
+    .poem-right-half,
+    .poem-left-half {
+        width: 100%;
+
+        text-align: center;
+
+        white-space: normal;
+    }
+
+    .poem-stanza-gap {
+        height: 30px;
+    }
+
+}
