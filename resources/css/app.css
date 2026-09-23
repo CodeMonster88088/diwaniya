@@ -1011,7 +1011,23 @@ html {
     background: #080908;
 }
 
-.public-photo-image img {
+.photo-lightbox-trigger {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+    margin: 0;
+
+    border: 0;
+
+    background: none;
+
+    cursor: zoom-in;
+}
+
+.photo-lightbox-trigger img {
     width: 100%;
     height: 100%;
 
@@ -1019,11 +1035,15 @@ html {
 
     object-fit: cover;
 
-    transition: transform 0.35s ease;
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
 }
 
-.public-photo-card:hover .public-photo-image img {
+.public-photo-card:hover .photo-lightbox-trigger img {
     transform: scale(1.04);
+
+    filter: brightness(1.08);
 }
 
 .public-photo-content {
@@ -1054,7 +1074,296 @@ html {
     font-size: 14px;
     line-height: 1.8;
 }
+/* =========================
+   Photo Lightbox
+   ========================= */
 
+.photo-lightbox {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    background: rgba(0, 0, 0, 0.94);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.photo-lightbox.active {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================
+   Lightbox Content
+   ========================= */
+
+.photo-lightbox-content {
+    max-width: 90vw;
+    max-height: 90vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.photo-lightbox-content > img {
+    display: block;
+
+    max-width: 90vw;
+    max-height: 75vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 15px 60px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================
+   Photo Information
+   ========================= */
+
+.photo-lightbox-info {
+    max-width: 800px;
+
+    margin-top: 18px;
+
+    color: white;
+}
+
+.photo-lightbox-info h3 {
+    margin: 0 0 6px;
+
+    color: #d1b276;
+
+    font-size: 21px;
+}
+
+.photo-lightbox-info p {
+    margin: 5px 0;
+
+    color: #c8bba5;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+#lightboxDate {
+    color: #96866d;
+}
+
+#lightboxDescription {
+    color: #b7aa95;
+}
+
+#lightboxCounter {
+    display: block;
+
+    margin-top: 10px;
+
+    color: #81745f;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   Close Button
+   ========================= */
+
+.photo-lightbox-close {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    color: white;
+
+    font-size: 32px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.photo-lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.20);
+
+    transform: scale(1.05);
+}
+
+
+/* =========================
+   Navigation Buttons
+   ========================= */
+
+.photo-lightbox-prev,
+.photo-lightbox-next {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    color: white;
+
+    font-size: 42px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.photo-lightbox-prev {
+    left: 25px;
+}
+
+.photo-lightbox-next {
+    right: 25px;
+}
+
+.photo-lightbox-prev:hover,
+.photo-lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.20);
+
+    transform:
+        translateY(-50%)
+        scale(1.05);
+}
+
+
+/* Prevent page scrolling while lightbox is open */
+
+body.lightbox-open {
+    overflow: hidden;
+}
+
+
+/* =========================
+   Lightbox Mobile
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .photo-lightbox {
+        padding: 20px;
+    }
+
+    .photo-lightbox-content {
+        max-width: 100%;
+        max-height: 90vh;
+    }
+
+    .photo-lightbox-content > img {
+        max-width: 95vw;
+        max-height: 65vh;
+    }
+
+    .photo-lightbox-info {
+        max-width: 90vw;
+
+        margin-top: 12px;
+    }
+
+    .photo-lightbox-info h3 {
+        font-size: 18px;
+    }
+
+    .photo-lightbox-info p {
+        font-size: 13px;
+    }
+
+    .photo-lightbox-prev,
+    .photo-lightbox-next {
+        width: 42px;
+        height: 42px;
+
+        font-size: 32px;
+    }
+
+    .photo-lightbox-prev {
+        left: 10px;
+    }
+
+    .photo-lightbox-next {
+        right: 10px;
+    }
+
+    .photo-lightbox-close {
+        top: 15px;
+        right: 15px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 28px;
+    }
+
+}
 
 /* =========================
    Poems
