@@ -83,7 +83,7 @@
 
                                             <td class="px-4 py-4">
                                                 <audio controls class="w-64">
-                                                    <source src="{{ asset('storage/audio/' . $audio->filename) }}"
+                                                    <source src="{{ $audio->storage_url }}"
                                                         type="{{ $audio->mime_type }}">
                                                     Your browser does not support the audio player.
                                                 </audio>

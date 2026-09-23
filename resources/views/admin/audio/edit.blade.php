@@ -130,7 +130,7 @@
     <div class="mt-2">
         <audio controls class="w-full max-w-xl">
             <source
-                src="{{ asset('storage/audio/' . $audioRecording->filename) }}"
+                src="{{ $audio->storage_url }}"
                 type="{{ $audioRecording->mime_type }}"
             >
             Your browser does not support the audio player.

@@ -131,7 +131,7 @@
                             <x-input-label :value="__('Current Photo')" />
 
                             <img
-                                src="{{ asset('storage/photos/' . $photo->filename) }}"
+                                src="{{ $photo->storage_url }}"
                                 alt="{{ $photo->title }}"
                                 class="mt-2 max-w-md rounded-lg shadow"
                             />

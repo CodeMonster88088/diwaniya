@@ -27,7 +27,7 @@
 
                                 <div class="border rounded-lg overflow-hidden">
 
-                                    <img src="{{ asset('storage/photos/' . $photo->filename) }}" alt="{{ $photo->title }}"
+                                    <img src="{{ $photo->storage_url }}" alt="{{ $photo->title }}"
                                         class="w-full h-56 object-cover">
 
                                     <div class="p-4">
