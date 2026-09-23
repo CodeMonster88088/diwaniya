@@ -128,13 +128,13 @@
     <x-input-label for="audio_file" :value="__('Replace Audio File')" />
 
     <div class="mt-2">
-        <audio controls class="w-full max-w-xl">
-            <source
-                src="{{ $audio->storage_url }}"
-                type="{{ $audioRecording->mime_type }}"
-            >
-            Your browser does not support the audio player.
-        </audio>
+    <audio controls class="w-full max-w-xl">
+        <source
+            src="{{ $audioRecording->storage_url }}"
+            type="{{ $audioRecording->mime_type ?? 'audio/mpeg' }}"
+        >
+        Your browser does not support the audio element.
+    </audio>
     </div>
 
     <input

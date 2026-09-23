@@ -19,6 +19,15 @@ class AudioController extends Controller
             ->latest()
             ->paginate(10);
 
+        $audioRecordings->getCollection()->each(function ($audio) {
+            $audio->storage_url = app()->environment('production')
+                ? Storage::temporaryUrl(
+                    'audio/' . $audio->filename,
+                    now()->addHour()
+                )
+                : asset('storage/audio/' . $audio->filename);
+        });
+
         return view('admin.audio.index', compact('audioRecordings'));
     }
 
@@ -35,6 +44,13 @@ class AudioController extends Controller
         $categories = Category::where('type', 'audio')
             ->orderBy('name')
             ->get();
+
+        $audioRecording->storage_url = app()->environment('production')
+            ? Storage::temporaryUrl(
+                'audio/' . $audioRecording->filename,
+                now()->addHour()
+            )
+            : asset('storage/audio/' . $audioRecording->filename);
 
         return view('admin.audio.edit', compact('audioRecording', 'categories'));
     }
