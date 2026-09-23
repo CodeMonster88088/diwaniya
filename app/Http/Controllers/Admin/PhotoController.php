@@ -76,13 +76,13 @@ class PhotoController extends Controller
             $file = $request->file('photo');
             $newFilename = $file->hashName();
 
-            $file->storeAs('photos', $newFilename, 'public');
+            $file->storeAs('photos', $newFilename);
 
             $data['filename'] = $newFilename;
             $data['original_filename'] = $file->getClientOriginalName();
 
             if ($oldFilename) {
-                Storage::disk('public')->delete('photos/' . $oldFilename);
+                Storage::delete('photos/' . $oldFilename);
             }
         }
 
@@ -95,7 +95,7 @@ class PhotoController extends Controller
     public function destroy(HistoricalPhoto $photo): RedirectResponse
     {
         if ($photo->filename) {
-            Storage::disk('public')->delete('photos/' . $photo->filename);
+            Storage::delete('photos/' . $photo->filename);
         }
 
         $photo->delete();
@@ -126,7 +126,7 @@ class PhotoController extends Controller
         $file = $request->file('photo');
         $filename = $file->hashName();
 
-        $file->storeAs('photos', $filename, 'public');
+        $file->storeAs('photos', $filename);
 
         HistoricalPhoto::create([
             'category_id' => $validated['category_id'] ?? null,

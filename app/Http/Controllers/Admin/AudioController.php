@@ -76,7 +76,7 @@ class AudioController extends Controller
             $file = $request->file('audio_file');
             $newFilename = $file->hashName();
 
-            $file->storeAs('audio', $newFilename, 'public');
+            $file->storeAs('audio', $newFilename);
 
             $data['filename'] = $newFilename;
             $data['original_filename'] = $file->getClientOriginalName();
@@ -84,7 +84,7 @@ class AudioController extends Controller
             $data['file_size'] = $file->getSize();
 
             if ($oldFilename) {
-                Storage::disk('public')->delete('audio/' . $oldFilename);
+                Storage::delete('audio/' . $oldFilename);
             }
         }
 
@@ -117,7 +117,7 @@ class AudioController extends Controller
 
         $filename = $file->hashName();
 
-        $file->storeAs('audio', $filename, 'public');
+        $file->storeAs('audio', $filename);
 
         AudioRecording::create([
             'title' => $validated['title'],
@@ -142,7 +142,7 @@ class AudioController extends Controller
     public function destroy(AudioRecording $audioRecording): RedirectResponse
     {
         if ($audioRecording->filename) {
-            Storage::disk('public')->delete('audio/' . $audioRecording->filename);
+            Storage::delete('audio/' . $audioRecording->filename);
         }
 
         $audioRecording->delete();
