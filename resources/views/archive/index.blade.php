@@ -1,557 +1,523 @@
 <x-public-layout title="الصور والقصائد">
 
-```
-{{-- Page Header --}}
-<section class="public-page-header">
-    <div class="public-container">
+    ```
+    {{-- Page Header --}}
+    <section class="public-page-header">
+        <div class="public-container">
 
-        <div class="page-heading">
-            <h1>الصور والقصائد</h1>
+            <div class="page-heading">
+                <h1>الصور والقصائد</h1>
 
-            <p>
-                مجموعة من الصور التاريخية والقصائد المحفوظة
-                ضمن أرشيف ملا عطية الجمري
-            </p>
-        </div>
-
-    </div>
-</section>
-
-
-{{-- Historical Photos --}}
-<section id="photos" class="archive-photos-section">
-
-    <div class="public-container">
-
-        <div class="archive-section-heading">
-            <h2>الصور التاريخية</h2>
-            <span></span>
-        </div>
-
-        @if ($photos->count())
-
-            <div class="public-photo-grid">
-
-                @foreach ($photos as $photo)
-
-                    <article class="public-photo-card">
-
-                        <div class="public-photo-image">
-
-                            <button
-                                type="button"
-                                class="photo-lightbox-trigger"
-                                data-photo-index="{{ $loop->index }}"
-                                aria-label="عرض {{ $photo->title }}"
-                            >
-                                <img
-                                    src="{{ $photo->storage_url }}"
-                                    alt="{{ $photo->title }}"
-                                >
-                            </button>
-
-                        </div>
-
-                        <div class="public-photo-content">
-
-                            <h3>
-                                {{ $photo->title }}
-                            </h3>
-
-                            @if ($photo->photographed_at)
-
-                                <p class="public-photo-date">
-                                    {{ $photo->photographed_at->format('Y-m-d') }}
-                                </p>
-
-                            @endif
-
-                            @if ($photo->description)
-
-                                <p class="public-photo-description">
-                                    {{ $photo->description }}
-                                </p>
-
-                            @endif
-
-                        </div>
-
-                    </article>
-
-                @endforeach
-
+                <p>
+                    مجموعة من الصور التاريخية والقصائد المحفوظة
+                    ضمن أرشيف ملا عطية الجمري
+                </p>
             </div>
 
-
-            {{-- Photo Lightbox --}}
-            <div
-                id="photoLightbox"
-                class="photo-lightbox"
-                aria-hidden="true"
-            >
-
-                <button
-                    type="button"
-                    class="photo-lightbox-close"
-                    aria-label="إغلاق"
-                >
-                    &times;
-                </button>
+        </div>
+    </section>
 
 
-                <button
-                    type="button"
-                    class="photo-lightbox-prev"
-                    aria-label="الصورة السابقة"
-                >
-                    ‹
-                </button>
+    {{-- Historical Photos --}}
+    <section id="photos" class="archive-photos-section">
 
+        <div class="public-container">
 
-                <div class="photo-lightbox-content">
+            <div class="archive-section-heading">
+                <h2>الصور التاريخية</h2>
+                <span></span>
+            </div>
 
-                    <img
-                        id="lightboxImage"
-                        src=""
-                        alt=""
-                    >
+            @if ($photos->count())
 
+                <div class="public-photo-grid">
 
-                    <div class="photo-lightbox-info">
+                    @foreach ($photos as $photo)
 
-                        <h3 id="lightboxTitle"></h3>
+                        <article class="public-photo-card">
 
-                        <p id="lightboxDate"></p>
+                            <div class="public-photo-image">
 
-                        <p id="lightboxDescription"></p>
+                                <button type="button" class="photo-lightbox-trigger" data-photo-index="{{ $loop->index }}"
+                                    aria-label="عرض {{ $photo->title }}">
+                                    <img src="{{ $photo->storage_url }}" alt="{{ $photo->title }}">
+                                </button>
 
-                        <span id="lightboxCounter"></span>
+                            </div>
 
-                    </div>
+                            <div class="public-photo-content">
+
+                                <h3>
+                                    {{ $photo->title }}
+                                </h3>
+
+                                @if ($photo->photographed_at)
+
+                                    <p class="public-photo-date">
+                                        {{ $photo->photographed_at->format('Y-m-d') }}
+                                    </p>
+
+                                @endif
+
+                                @if ($photo->description)
+
+                                    <p class="public-photo-description">
+                                        {{ $photo->description }}
+                                    </p>
+
+                                @endif
+
+                            </div>
+
+                        </article>
+
+                    @endforeach
 
                 </div>
 
 
-                <button
-                    type="button"
-                    class="photo-lightbox-next"
-                    aria-label="الصورة التالية"
-                >
-                    ›
-                </button>
+                {{-- Photo Lightbox --}}
+                <div id="photoLightbox" class="photo-lightbox" aria-hidden="true">
 
-            </div>
-
-        @else
-
-            <div class="public-empty-state">
-
-                <h2>لا توجد صور حالياً</h2>
-
-                <p>
-                    ستظهر الصور التاريخية هنا عند إضافتها إلى الأرشيف.
-                </p>
-
-            </div>
-
-        @endif
-
-    </div>
-
-</section>
+                    <button type="button" class="photo-lightbox-close" aria-label="إغلاق">
+                        &times;
+                    </button>
 
 
-{{-- Poems --}}
-<section id="poems" class="archive-poems-section">
+                    <button type="button" class="photo-lightbox-prev" aria-label="الصورة السابقة">
+                        ‹
+                    </button>
 
-    <div class="public-container">
 
-        <div class="archive-section-heading">
+                    <div class="photo-lightbox-content">
 
-            <h2>القصائد</h2>
+                        <img id="lightboxImage" src="" alt="">
 
-            <span></span>
+
+                        <div class="photo-lightbox-info">
+
+                            <h3 id="lightboxTitle"></h3>
+
+                            <p id="lightboxDate"></p>
+
+                            <p id="lightboxDescription"></p>
+
+                            <span id="lightboxCounter"></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button type="button" class="photo-lightbox-next" aria-label="الصورة التالية">
+                        ›
+                    </button>
+
+                </div>
+
+            @else
+
+                <div class="public-empty-state">
+
+                    <h2>لا توجد صور حالياً</h2>
+
+                    <p>
+                        ستظهر الصور التاريخية هنا عند إضافتها إلى الأرشيف.
+                    </p>
+
+                </div>
+
+            @endif
 
         </div>
 
-
-        @if ($poems->count())
-
-            <div class="public-poem-grid">
-
-                @foreach ($poems as $poem)
-
-                    <article class="public-poem-card">
-
-                        <div class="poem-decoration">
-                            ❧
-                        </div>
+    </section>
 
 
-                        <h3>
-                            <a href="{{ route('archive.poems.show', $poem) }}">
-                                {{ $poem->title }}
-                            </a>
-                        </h3>
+    {{-- Poems --}}
+    <section id="poems" class="archive-poems-section">
 
+        <div class="public-container">
 
-                        @if ($poem->poet)
+            <div class="archive-section-heading">
 
-                            <p class="public-poet">
-                                {{ $poem->poet }}
-                            </p>
+                <h2>القصائد</h2>
 
-                        @endif
-
-
-                        @if ($poem->content)
-
-                            <p class="public-poem-preview">
-                                {{ \Illuminate\Support\Str::limit($poem->content, 160) }}
-                            </p>
-
-
-                            <a
-                                href="{{ route('archive.poems.show', $poem) }}"
-                                class="read-poem-link"
-                            >
-                                قراءة القصيدة كاملة
-                                ←
-                            </a>
-
-                        @endif
-
-
-                        @if ($poem->written_at)
-
-                            <p class="public-poem-date">
-                                {{ $poem->written_at->format('Y-m-d') }}
-                            </p>
-
-                        @endif
-
-                    </article>
-
-                @endforeach
+                <span></span>
 
             </div>
 
-        @else
 
-            <div class="public-empty-state">
+            @if ($poems->count())
 
-                <h2>لا توجد قصائد حالياً</h2>
+                <div class="public-poem-grid">
 
-                <p>
-                    ستظهر القصائد هنا عند إضافتها إلى الأرشيف.
-                </p>
+                    @foreach ($poems as $poem)
 
-            </div>
+                        <article class="public-poem-card">
 
-        @endif
+                            <div class="poem-decoration">
+                                ❧
+                            </div>
 
-    </div>
 
-</section>
+                            <h3>
+                                <a href="{{ route('archive.poems.show', $poem) }}">
+                                    {{ $poem->title }}
+                                </a>
+                            </h3>
 
 
-{{-- Prepare Photo Data for JavaScript --}}
-@php
+                            @if ($poem->poet)
 
-    $archivePhotos = $photos->values()->map(function ($photo) {
+                                <p class="public-poet">
+                                    {{ $poem->poet }}
+                                </p>
 
-        return [
-            'src' => asset('storage/photos/' . $photo->filename),
-            'title' => $photo->title,
-            'date' => $photo->photographed_at
-                ? $photo->photographed_at->format('Y-m-d')
-                : '',
-            'description' => $photo->description ?? '',
-        ];
+                            @endif
 
-    });
 
-@endphp
+                            @if ($poem->content)
 
+                                <p class="public-poem-preview">
+                                    {{ \Illuminate\Support\Str::limit($poem->content, 160) }}
+                                </p>
 
-{{-- Photo Data --}}
-<script>
-    const archivePhotos = {{ Js::from($archivePhotos) }};
-</script>
 
+                                <a href="{{ route('archive.poems.show', $poem) }}" class="read-poem-link">
+                                    قراءة القصيدة كاملة
+                                    ←
+                                </a>
 
-{{-- Photo Lightbox JavaScript --}}
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
+                            @endif
 
-        const lightbox =
-            document.getElementById('photoLightbox');
 
-        const image =
-            document.getElementById('lightboxImage');
+                            @if ($poem->written_at)
 
-        const title =
-            document.getElementById('lightboxTitle');
+                                <p class="public-poem-date">
+                                    {{ $poem->written_at->format('Y-m-d') }}
+                                </p>
 
-        const date =
-            document.getElementById('lightboxDate');
+                            @endif
 
-        const description =
-            document.getElementById('lightboxDescription');
+                        </article>
 
-        const counter =
-            document.getElementById('lightboxCounter');
+                    @endforeach
 
+                </div>
 
-        const closeButton =
-            document.querySelector('.photo-lightbox-close');
+            @else
 
-        const previousButton =
-            document.querySelector('.photo-lightbox-prev');
+                <div class="public-empty-state">
 
-        const nextButton =
-            document.querySelector('.photo-lightbox-next');
+                    <h2>لا توجد قصائد حالياً</h2>
 
+                    <p>
+                        ستظهر القصائد هنا عند إضافتها إلى الأرشيف.
+                    </p>
 
-        let currentIndex = 0;
+                </div>
 
+            @endif
 
-        /*
-         * Show a specific photo
-         */
-        function showPhoto(index) {
+        </div>
 
-            if (!archivePhotos.length) {
-                return;
-            }
+    </section>
 
 
-            currentIndex =
-                (index + archivePhotos.length) %
-                archivePhotos.length;
+    {{-- Prepare Photo Data for JavaScript --}}
+    @php
+        $archivePhotos = $photos->values()->map(function ($photo) {
+            return [
+                'src' => $photo->storage_url,
+                'title' => $photo->title,
+                'date' => $photo->photographed_at
+                    ? $photo->photographed_at->format('Y-m-d')
+                    : '',
+                'description' => $photo->description ?? '',
+            ];
+        });
+    @endphp
 
 
-            const photo =
-                archivePhotos[currentIndex];
+    {{-- Photo Data --}}
+    <script>
+        const archivePhotos = {{ Js::from($archivePhotos) }};
+    </script>
 
 
-            image.src = photo.src;
+    {{-- Photo Lightbox JavaScript --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
 
-            image.alt = photo.title;
+            const lightbox =
+                document.getElementById('photoLightbox');
 
+            const image =
+                document.getElementById('lightboxImage');
 
-            title.textContent =
-                photo.title;
+            const title =
+                document.getElementById('lightboxTitle');
 
+            const date =
+                document.getElementById('lightboxDate');
 
-            date.textContent =
-                photo.date;
+            const description =
+                document.getElementById('lightboxDescription');
 
-            date.style.display =
-                photo.date ? '' : 'none';
+            const counter =
+                document.getElementById('lightboxCounter');
 
 
-            description.textContent =
-                photo.description;
+            const closeButton =
+                document.querySelector('.photo-lightbox-close');
 
-            description.style.display =
-                photo.description ? '' : 'none';
+            const previousButton =
+                document.querySelector('.photo-lightbox-prev');
 
+            const nextButton =
+                document.querySelector('.photo-lightbox-next');
 
-            counter.textContent =
-                (currentIndex + 1) +
-                ' / ' +
-                archivePhotos.length;
-        }
 
+            let currentIndex = 0;
 
-        /*
-         * Open lightbox
-         */
-        function openLightbox(index) {
 
-            showPhoto(index);
+            /*
+             * Show a specific photo
+             */
+            function showPhoto(index) {
 
-
-            lightbox.classList.add('active');
-
-            lightbox.setAttribute(
-                'aria-hidden',
-                'false'
-            );
-
-
-            document.body.classList.add(
-                'lightbox-open'
-            );
-        }
-
-
-        /*
-         * Close lightbox
-         */
-        function closeLightbox() {
-
-            lightbox.classList.remove('active');
-
-
-            lightbox.setAttribute(
-                'aria-hidden',
-                'true'
-            );
-
-
-            document.body.classList.remove(
-                'lightbox-open'
-            );
-
-
-            image.src = '';
-        }
-
-
-        /*
-         * Open photo when clicked
-         */
-        document
-            .querySelectorAll('.photo-lightbox-trigger')
-            .forEach(button => {
-
-                button.addEventListener(
-                    'click',
-                    () => {
-
-                        const index =
-                            Number(
-                                button.dataset.photoIndex
-                            );
-
-
-                        openLightbox(index);
-                    }
-                );
-
-            });
-
-
-        /*
-         * Close button
-         */
-        closeButton.addEventListener(
-            'click',
-            closeLightbox
-        );
-
-
-        /*
-         * Previous photo
-         */
-        previousButton.addEventListener(
-            'click',
-            () => {
-
-                showPhoto(
-                    currentIndex - 1
-                );
-
-            }
-        );
-
-
-        /*
-         * Next photo
-         */
-        nextButton.addEventListener(
-            'click',
-            () => {
-
-                showPhoto(
-                    currentIndex + 1
-                );
-
-            }
-        );
-
-
-        /*
-         * Close when clicking outside the image
-         */
-        lightbox.addEventListener(
-            'click',
-            event => {
-
-                if (
-                    event.target === lightbox
-                ) {
-
-                    closeLightbox();
-
-                }
-
-            }
-        );
-
-
-        /*
-         * Keyboard controls
-         */
-        document.addEventListener(
-            'keydown',
-            event => {
-
-                if (
-                    !lightbox.classList.contains(
-                        'active'
-                    )
-                ) {
+                if (!archivePhotos.length) {
                     return;
                 }
 
 
-                /*
-                 * Escape
-                 */
-                if (
-                    event.key === 'Escape'
-                ) {
-
-                    closeLightbox();
-
-                }
+                currentIndex =
+                    (index + archivePhotos.length) %
+                    archivePhotos.length;
 
 
-                /*
-                 * Previous
-                 */
-                if (
-                    event.key === 'ArrowLeft'
-                ) {
+                const photo =
+                    archivePhotos[currentIndex];
+
+
+                image.src = photo.src;
+
+                image.alt = photo.title;
+
+
+                title.textContent =
+                    photo.title;
+
+
+                date.textContent =
+                    photo.date;
+
+                date.style.display =
+                    photo.date ? '' : 'none';
+
+
+                description.textContent =
+                    photo.description;
+
+                description.style.display =
+                    photo.description ? '' : 'none';
+
+
+                counter.textContent =
+                    (currentIndex + 1) +
+                    ' / ' +
+                    archivePhotos.length;
+            }
+
+
+            /*
+             * Open lightbox
+             */
+            function openLightbox(index) {
+
+                showPhoto(index);
+
+
+                lightbox.classList.add('active');
+
+                lightbox.setAttribute(
+                    'aria-hidden',
+                    'false'
+                );
+
+
+                document.body.classList.add(
+                    'lightbox-open'
+                );
+            }
+
+
+            /*
+             * Close lightbox
+             */
+            function closeLightbox() {
+
+                lightbox.classList.remove('active');
+
+
+                lightbox.setAttribute(
+                    'aria-hidden',
+                    'true'
+                );
+
+
+                document.body.classList.remove(
+                    'lightbox-open'
+                );
+
+
+                image.src = '';
+            }
+
+
+            /*
+             * Open photo when clicked
+             */
+            document
+                .querySelectorAll('.photo-lightbox-trigger')
+                .forEach(button => {
+
+                    button.addEventListener(
+                        'click',
+                        () => {
+
+                            const index =
+                                Number(
+                                    button.dataset.photoIndex
+                                );
+
+
+                            openLightbox(index);
+                        }
+                    );
+
+                });
+
+
+            /*
+             * Close button
+             */
+            closeButton.addEventListener(
+                'click',
+                closeLightbox
+            );
+
+
+            /*
+             * Previous photo
+             */
+            previousButton.addEventListener(
+                'click',
+                () => {
 
                     showPhoto(
                         currentIndex - 1
                     );
 
                 }
+            );
 
 
-                /*
-                 * Next
-                 */
-                if (
-                    event.key === 'ArrowRight'
-                ) {
+            /*
+             * Next photo
+             */
+            nextButton.addEventListener(
+                'click',
+                () => {
 
                     showPhoto(
                         currentIndex + 1
                     );
 
                 }
+            );
 
-            }
-        );
 
-    });
-</script>
-```
+            /*
+             * Close when clicking outside the image
+             */
+            lightbox.addEventListener(
+                'click',
+                event => {
+
+                    if (
+                        event.target === lightbox
+                    ) {
+
+                        closeLightbox();
+
+                    }
+
+                }
+            );
+
+
+            /*
+             * Keyboard controls
+             */
+            document.addEventListener(
+                'keydown',
+                event => {
+
+                    if (
+                        !lightbox.classList.contains(
+                            'active'
+                        )
+                    ) {
+                        return;
+                    }
+
+
+                    /*
+                     * Escape
+                     */
+                    if (
+                        event.key === 'Escape'
+                    ) {
+
+                        closeLightbox();
+
+                    }
+
+
+                    /*
+                     * Previous
+                     */
+                    if (
+                        event.key === 'ArrowLeft'
+                    ) {
+
+                        showPhoto(
+                            currentIndex - 1
+                        );
+
+                    }
+
+
+                    /*
+                     * Next
+                     */
+                    if (
+                        event.key === 'ArrowRight'
+                    ) {
+
+                        showPhoto(
+                            currentIndex + 1
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+    </script>
+    ```
 
 </x-public-layout>
