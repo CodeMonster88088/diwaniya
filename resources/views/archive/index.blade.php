@@ -45,7 +45,7 @@
                                 aria-label="عرض {{ $photo->title }}"
                             >
                                 <img
-                                    src="{{ asset('storage/photos/' . $photo->filename) }}"
+                                    src="{{ $photo->storage_url }}"
                                     alt="{{ $photo->title }}"
                                 >
                             </button>

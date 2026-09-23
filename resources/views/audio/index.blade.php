@@ -71,7 +71,7 @@
 
                                 <audio controls preload="metadata">
                                     <source
-                                        src="{{ asset('storage/audio/' . $audio->filename) }}"
+                                        src="{{ $audio->storage_url }}"
                                         type="{{ $audio->mime_type }}"
                                     >
 
